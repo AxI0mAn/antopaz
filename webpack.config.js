@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   const isDev = !isProduction;
   const shouldAnalyze = env && env.analyze;
-  const repoName = 'antopaz'; // Убедитесь, что имя репозитория здесь актуально
+  const repoName = 'axiopazz'; // Убедитесь, что имя репозитория здесь актуально
 
   // console.log(`Webpack is running in ${isProduction ? 'production' : 'development'} mode`);
 
