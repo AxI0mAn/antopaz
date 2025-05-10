@@ -1,0 +1,74 @@
+body {
+  background-color: rgb(111, 101, 249);
+  color: rgb(25, 23, 55);
+  padding-top: 4px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+header {
+  background-color: rgb(109, 103, 193);
+  background-image: url('./../../shared/assets/images/forest.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  width: 100%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: x-large;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+h2 {
+  font-size: x-large;
+  color: rgb(25, 254, 0);
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  text-align: left;
+}
+
+a {
+  padding: 12px 24px;
+  background-color: chocolate;
+  color: bisque;
+  box-shadow: 2px 2px 2px rgb(113, 55, 13);
+  margin-bottom: 48px;
+
+  &:hover {
+    text-transform: uppercase;
+    background-color: rgb(113, 55, 13);
+    box-shadow: -2px -2px 2px chocolate;
+    transition: all .5s;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+  }
+
+  &:active {
+    opacity: 0;
+  }
+
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.test_img {
+  align-self: flex-start;
+  width: 400px;
+  aspect-ratio: 1/1;
+}
