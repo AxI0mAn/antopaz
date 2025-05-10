@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   const isDev = !isProduction;
   const shouldAnalyze = env && env.analyze;
-  const repoName = 'testSPAPWA'; // Убедитесь, что имя репозитория здесь актуально
+  const repoName = 'antopaz'; // Убедитесь, что имя репозитория здесь актуально
 
   // console.log(`Webpack is running in ${isProduction ? 'production' : 'development'} mode`);
 
@@ -79,7 +79,7 @@ module.exports = (env, argv) => {
         // Убедитесь, что favicon.svg не попадет в список precache дважды, если он уже скопирован
         // exclude: [/\.map$/, /manifest\.json$/, /favicon\.svg$/],
         navigationPreload: true, // позволяет браузеру одновременно с запуском Service Worker'а начать сетевой запрос для навигации. Это значительно уменьшает задержку, делая навигацию по вашему PWA более быстрой и отзывчивой.
-        swDest: 'service-worker.js',// swDest: 'testSPAPWA/service-worker.js', // swDest: 'sw.js', // <<< Файл sw.js будет создан в dist/testSPAPWA/
+        swDest: 'service-worker.js',// swDest: 'antopaz/service-worker.js', // swDest: 'sw.js', // <<< Файл sw.js будет создан в dist/antopaz/
 
         runtimeCaching: [
           {
@@ -113,10 +113,10 @@ module.exports = (env, argv) => {
         description: 'Описание вашей онлайн PWA игры.', // Описание  1-2 предложения или примерно до 70-80 символов для краткого представления
 
         start_url: isProduction ? '/' + repoName + '/' + 'game.html' : '/', // Проверьте этот URL на соответствие вашим нуждам. Это URL, который откроется при запуске с ярлыка (используем repoName извне scope return)
-        scope: isProduction ? '/' + repoName + '/' : '/', // Опционально: область действия SW (часто совпадает с publicPath). Для https://axi0man.github.io/testSPAPWA/game.html вид scope: /testSPAPWA/ - правильно!
+        scope: isProduction ? '/' + repoName + '/' : '/', // Опционально: область действия SW (часто совпадает с publicPath). Для https://axi0man.github.io/antopaz/game.html вид scope: /antopaz/ - правильно!
         // для gitHub pages рукомендуется start_url: ".", scope: ".",
 
-        id: '/' + repoName + '/', // Это установит id, например, в "/testSPAPWA/". publicPath (/testSPAPWA/) является корневым каталогом, контролируемым вашим Service Worker'ом, и часто используется как стабильный идентификатор приложения. start_url же указывает на конкретную страницу для запуска.
+        id: '/' + repoName + '/', // Это установит id, например, в "/antopaz/". publicPath (/antopaz/) является корневым каталогом, контролируемым вашим Service Worker'ом, и часто используется как стабильный идентификатор приложения. start_url же указывает на конкретную страницу для запуска.
         display: 'fullscreen', // Режим отображения ('fullscreen', 'standalone', 'minimal-ui', 'browser')
         background_color: '#212529', // Цвет фона splash screen'а
         theme_color: '#007bff', // Цвет темы (для адресной строки)
@@ -176,7 +176,7 @@ module.exports = (env, argv) => {
     // Создаем глобальную константу PUBLIC_URL, доступную в клиентском JS
     new DefinePlugin({
       'process.env': {
-        PUBLIC_URL: JSON.stringify(isProduction ? '/' + repoName + '/' : '/'), // Путь для Production: /testSPAPWA/, для Dev: /
+        PUBLIC_URL: JSON.stringify(isProduction ? '/' + repoName + '/' : '/'), // Путь для Production: /antopaz/, для Dev: /
         NODE_ENV: JSON.stringify(argv.mode || 'development'),
       }
     }),
