@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22 # Используем версию 22
+          node-version: 20
           cache: 'npm'
       
       # 3. ОЧИСТКА И УСТАНОВКА ЗАВИСИМОСТЕЙ
