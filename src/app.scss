@@ -1,0 +1,10 @@
+@use "/src/styles/_reset.scss";
+@use "/src/styles/_fonts.scss";
+
+body {
+  background: variables.$bg_game;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
