@@ -1,0 +1,63 @@
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Запускать при пуше в ветку main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    # Определяем окружение для GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Разрешаем Actions записывать данные в репозиторий (необходимо для деплоя)
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      # 1. Чек-аут кода
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      # 2. Установка Node.js (выбираем Node 20 или новее)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      # 3. Установка зависимостей
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Сборка SvelteKit
+      - name: Build SvelteKit
+        run: npm run build
+        env:
+          # ⭐️ ПЕРЕДАЧА VITE_BASE_PATH ЗДЕСЬ!
+          # ${{ github.event.repository.name }} - это имя репозитория (test-repo)
+          VITE_BASE_PATH: /${{ github.event.repository.name }}
+          
+      # 5. Настройка артефакта (папки сборки)
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: svelte
+
+      # 6. Загрузка артефакта
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build # Указываем папку, куда adapter-static поместил файлы
+
+      # 7. Развертывание на GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
