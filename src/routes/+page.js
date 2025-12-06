@@ -1,0 +1,1 @@
+export const prerender = true; // чтоб страница была index.html
