@@ -26,22 +26,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      # 2. Установка Node.js (выбираем Node 20 или новее)
+      # 2. Установка Node.js  
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22 # Используем версию 22
           cache: 'npm'
       
-      # 3. Установка зависимостей
-      - name: Install dependencies
-        run: npm install
+      # 3. ОЧИСТКА И УСТАНОВКА ЗАВИСИМОСТЕЙ
+      - name: Clean install dependencies
+        run: |
+          npm ci
+          npm rebuild sass
 
       # 4. Сборка SvelteKit
       - name: Build SvelteKit
         run: npm run build
         env:
-          # ⭐️ ПЕРЕДАЧА VITE_BASE_PATH ЗДЕСЬ!
+          #  ПЕРЕДАЧА VITE_BASE_PATH ЗДЕСЬ!
           # ${{ github.event.repository.name }} - это имя репозитория (test-repo)
           VITE_BASE_PATH: /${{ github.event.repository.name }}
           
