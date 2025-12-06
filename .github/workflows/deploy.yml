@@ -46,7 +46,11 @@ jobs:
           #  ПЕРЕДАЧА VITE_BASE_PATH ЗДЕСЬ!
           # ${{ github.event.repository.name }} - это имя репозитория (test-repo)
           VITE_BASE_PATH: /${{ github.event.repository.name }}
-          
+      
+      # static_site_generator: svelte for CI stability
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       # 5. Настройка артефакта (папки сборки)
       - name: Setup Pages
         uses: actions/configure-pages@v5
